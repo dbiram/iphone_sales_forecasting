@@ -24,7 +24,7 @@ This mirrors real-world retail forecasting use cases in inventory management and
 ---
 
 ## 📂 Project Structure
-
+```
 iphone_sales_forecasting/
 ├── data/ # Raw data (excluded from GitHub)
 ├── models/ # Saved LightGBM model
@@ -32,7 +32,7 @@ iphone_sales_forecasting/
 ├── src/ # Modular Python code
 ├── requirements.txt # Environment dependencies
 └── README.md # Project documentation
-
+```
 
 ---
 
