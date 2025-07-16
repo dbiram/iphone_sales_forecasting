@@ -3,3 +3,4 @@ __pycache__/
 *.csv
 models/
 data/
+notebooks/catboost_info/

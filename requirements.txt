@@ -9,3 +9,5 @@ prophet
 streamlit
 fastapi
 joblib
+xgboost
+catboost
