@@ -1,5 +1,7 @@
 # iPhone Sales Forecasting
 
+[![Hugging Face Spaces](https://img.shields.io/badge/Live%20Demo-Hugging%20Face-blue)](https://huggingface.co/spaces/dbiram/iphone-sales-forecast)
+
 **Goal:** Forecast the next 8 weeks of weekly iPhone unit sales per model, incorporating:
 - Historical sales
 - Product lifecycle (cold start)
@@ -150,3 +152,6 @@ uvicorn api.main:app --reload
 # Run Frontend
 streamlit run app/app.py
 ```
+
+## Live Demo (in French): 
+[Accéder à l'application Streamlit sur Hugging Face](https://huggingface.co/spaces/dbiram/iphone-sales-forecast)
