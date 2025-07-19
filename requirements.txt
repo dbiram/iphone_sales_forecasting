@@ -8,6 +8,9 @@ scikit-learn
 prophet
 streamlit
 fastapi
+uvicorn
+python-multipart
 joblib
 xgboost
 catboost
+pydantic

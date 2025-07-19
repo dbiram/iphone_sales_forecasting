@@ -20,13 +20,15 @@ This mirrors real-world retail forecasting use cases in inventory management and
 | Key Metrics                | MAPE, WAPE, RMSE                       |
 | Final Model                | LightGBM (gradient boosting)           |
 | Alternatives Tested        | XGBoost, CatBoost                      |
-| Deployment                 | (to be added: Streamlit / API)         |
+| Deployment                 | FastAPI backend + Streamlit frontend   |
 
 ---
 
 ## Project Structure
 ```
 iphone_sales_forecasting/
+├── api/ # FastAPI backend (inference API)
+├── app/ # Streamlit frontend (in French)
 ├── data/ # Raw data (excluded from GitHub)
 ├── models/ # Saved LightGBM model
 ├── notebooks/ # Analysis and modeling notebooks
@@ -71,11 +73,43 @@ iphone_sales_forecasting/
 
 | Model      | Global WAPE | Global MAPE | Global RMSE |
 |------------|------------|-------------|-------------|
-| LightGBM   | 2 %     | ~909 %      | ~793 units  |
-| XGBoost    | 1.4 %     | ~641 %      | ~909 units  |
-| CatBoost   | 1.5 %     | ~1244 %     | ~712 units  |
+| LightGBM   | 2.0 %      | ~909 %      | ~793 units  |
+| XGBoost    | 1.4 %      | ~641 %      | ~909 units  |
+| CatBoost   | 1.5 %      | ~1244 %     | ~712 units  |
 
 > **Note:** High MAPE explained by small-actual weeks inflating % errors. WAPE preferred for business evaluation.
+
+---
+
+## Deployment Components
+
+### FastAPI Backend
+- `/predict/` endpoint (rolling forecast)
+- Inputs:
+  - Historical data (at least 4 weeks)
+  - Future week commercial plan (prices, promotions, etc.)
+- Output:
+  - Sequential sales predictions
+
+Run backend:
+
+```bash
+uvicorn api.main:app --reload
+```
+Access API docs at: http://127.0.0.1:8000/docs
+
+### Streamlit Frontend (in French)
+- Upload historical sales as CSV
+- Input forecast window + future commercial plan
+- Visualize sales forecasts in a date-based chart
+
+Run backend:
+
+```bash
+streamlit run app/app.py
+```
+
+## Key Visualizations
 
 **LightGBM (iPhone 14):**  
 
@@ -95,7 +129,9 @@ iphone_sales_forecasting/
 - Integrated promotions and seasonality handling
 - Applied LightGBM with lag features and rolling statistics
 - Time-based validation and error analysis per product
-- Ready for deployment and further iterations
+- Fully deployed:
+  - API backend (FastAPI)
+  - Business-facing UI (Streamlit, in French)
 
 ---
 
@@ -105,9 +141,12 @@ iphone_sales_forecasting/
 # Install dependencies
 pip install -r requirements.txt
 
-# Train final model
+# Train final model (optional)
 python -m src.final_model
 
-# Run notebooks for analysis
-jupyter notebook
+# Run API
+uvicorn api.main:app --reload
+
+# Run Frontend
+streamlit run app/app.py
 ```
