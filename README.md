@@ -98,7 +98,7 @@ Run backend:
 ```bash
 uvicorn api.main:app --reload
 ```
-Access API docs at: http://127.0.0.1:8000/docs
+
 
 ### Streamlit Frontend (in French)
 - Upload historical sales as CSV
