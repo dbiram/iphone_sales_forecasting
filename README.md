@@ -98,14 +98,13 @@ Run backend:
 ```bash
 uvicorn api.main:app --reload
 ```
-
-
+Access API docs at: [https://dbiram-churn-prediction-api.hf.space/docs](https://dbiram-churn-prediction-api.hf.space/docs)
 ### Streamlit Frontend (in French)
 - Upload historical sales as CSV
 - Input forecast window + future commercial plan
 - Visualize sales forecasts in a date-based chart
 
-Run backend:
+Run frontend:
 
 ```bash
 streamlit run app/app.py
